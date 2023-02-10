@@ -14,11 +14,15 @@
 }
 
 .books-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  grid-gap: 1em;
   font-size: calc(10px + 2vmin);
   padding: 50px;
   border-style: inset;
   margin-top: 50px;
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-gap: 1em;
+
 }

@@ -11,9 +11,7 @@ function App() {
       <Navbar />
       <header className="App-header">
         <p>
-          <i>
-            Tell us about books that inspire you and broaden your perspective ↖️
-          </i>
+          <i>Tell us about books that inspire you and broaden your perspective ↖️</i>
         </p>
         <p>
           <i>Discover books by authors from silenced communities ↙️</i>
@@ -21,6 +19,9 @@ function App() {
       </header>
       <section className="books-container">
         <h2>Featured Books</h2>
+        <div className="books-grid">
+          <BookList />
+        </div>
       </section>
     </div>
   );
