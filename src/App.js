@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
+import BookList from './components/BookList';
+import Navbar from "./Navigation/Navbar";
 
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <i>What books inspire you and broaden your perspective? We would love to know!</i>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      <section className="books-container">
+        <h2>Featured Books</h2>
+      </section>
     </div>
   );
 }
