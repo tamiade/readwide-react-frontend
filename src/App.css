@@ -7,20 +7,16 @@
 
 .App-header {
   background-color: #282c34;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  padding: 50px;
+  padding-top: 150px;
+  padding-bottom: 50px;
 }
 
 .books-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-gap: 1em;
   font-size: calc(10px + 2vmin);
   padding: 50px;
   border-style: inset;

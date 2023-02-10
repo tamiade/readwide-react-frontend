@@ -11,7 +11,12 @@ function App() {
       <Navbar />
       <header className="App-header">
         <p>
-          <i>What books inspire you and broaden your perspective? We would love to know!</i>
+          <i>
+            Tell us about books that inspire you and broaden your perspective ↖️
+          </i>
+        </p>
+        <p>
+          <i>Discover books by authors from silenced communities ↙️</i>
         </p>
       </header>
       <section className="books-container">

@@ -1,10 +1,10 @@
 const Navbar = () => {
   return (
-    <div className="container">
-      <nav
-        className="navbar navbar-expand-lg navbar-light"
-        style={{ "background-color": "#ffffff" }}
+    <nav
+    className="navbar fixed-top navbar-expand-lg navbar-light"
+    style={{ "background-color": "#ffffff" }}
       >
+      <div className="container">
         <a className="navbar-brand mb-0 h1 fs-2" href="#">
           📖 ReadWide
         </a>
@@ -29,8 +29,8 @@ const Navbar = () => {
             </button>
           </form>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 };
 
