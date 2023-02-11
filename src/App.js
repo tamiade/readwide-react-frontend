@@ -3,12 +3,10 @@ import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 import BookList from './components/BookList';
-import Navbar from "./Navigation/Navbar";
 
 function App() {
   return (
     <body className="App">
-      <Navbar />
       <header className="App-header">
         <p>
           <i>Tell us about books that inspire you and broaden your perspective ↖️</i>
