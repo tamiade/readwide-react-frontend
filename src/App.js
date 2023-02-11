@@ -7,7 +7,7 @@ import Navbar from "./Navigation/Navbar";
 
 function App() {
   return (
-    <div className="App">
+    <body className="App">
       <Navbar />
       <header className="App-header">
         <p>
@@ -17,13 +17,10 @@ function App() {
           <i>Discover books by authors from silenced communities ↙️</i>
         </p>
       </header>
-      <section className="books-container">
-        <h2>Featured Books</h2>
-        <div className="books-grid">
-          <BookList />
-        </div>
-      </section>
-    </div>
+      <main>
+        <BookList />
+      </main>
+    </body>
   );
 }
 
