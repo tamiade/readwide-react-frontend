@@ -1,13 +1,23 @@
-import { useState, useEffect } from "react";
-import axios from 'axios';
 import Book from './Book';
 
-const BookList = () => {
+const BookList = ({ books }) => {
+
+  const bookComponents = books.map((book) => {
+    return (
+        <Book 
+        thumbnail={book.thumbnail}
+        title={book.title}
+        author={book.author}
+        description={book.description}
+        />
+    );
+  });
+
   return (
     <section className="books-container">
       <h2>Featured Books</h2>
       <div className="books-grid">
-        Render modified book component with only thumbnail, title, and author fields
+        {bookComponents}
       </div>
     </section>
   );

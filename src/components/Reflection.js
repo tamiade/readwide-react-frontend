@@ -1,10 +1,10 @@
-const Reflection = () => {
+const Reflection = ({submittedBy, timePosted, reflectionEntry}) => {
   return (
     <section>
       <ul>
-        <li>Member submittedby</li>
-        <li>Posted time</li>
-        <li>Book reflection</li>
+        <li>{submittedBy}</li>
+        <li>{timePosted}</li>
+        <li>{reflectionEntry}</li>
       </ul>
     </section>
   );

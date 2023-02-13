@@ -3,9 +3,17 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { useState } from 'react';
 import { LinkContainer } from "react-router-bootstrap";
 
 function NavBar() {
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const renameSearch = (changeEvent) => {
+    setSearchTerm(changeEvent.target.value);
+  };
+
   return (
     <Navbar fixed="top" bg="light" expand="lg">
       <Container>
@@ -26,7 +34,9 @@ function NavBar() {
           <Form className="d-flex">
             <Form.Control
               type="search"
-              placeholder="Search"
+              value={searchTerm}
+              placeholder="Search by Title or Author"
+              onChange={renameSearch}
               className="me-2"
               aria-label="Search"
             />
