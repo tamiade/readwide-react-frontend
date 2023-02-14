@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Reflection from "./Reflection";
+import "./ReflectionList.css";
 
 const ReflectionList = ({ reflections }) => {
 
@@ -25,7 +26,7 @@ const ReflectionList = ({ reflections }) => {
   });
 
   return (
-    <section>
+    <section className="reflections-container">
       <h2>Community Reflections</h2>
       <div>{reflectionComponents}</div>
     </section>

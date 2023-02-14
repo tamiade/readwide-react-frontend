@@ -1,7 +1,9 @@
-const Reflection = ({reflection}) => {
+import "./Reflection.css";
+
+const Reflection = ({ reflection }) => {
   return (
     <section>
-      <ul>
+      <ul className="reflection-display">
         <li>{reflection.postedTime.toString()}</li>
         <li>Submitted By {reflection.submittedBy}</li>
         <li>{reflection.reflection}</li>

@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { useState } from "react";
 import axios from "axios";
+import "./BookDetails.css";
 
 const BookDetails = ({ book, reflections, onBookChange, onBackClick }) => {
   const [formFields, setFormFields] = useState({
@@ -61,13 +62,13 @@ const BookDetails = ({ book, reflections, onBookChange, onBackClick }) => {
   return (
     <section>
       <ul className="book-display">
-        <li>
+        <li className="book-elements">
           <Button variant="outline-dark" onClick={onBackButtonClick}>
             Back
           </Button>
         </li>
         <li>Title: {book.title}</li>
-        <li>
+        <li className="book-elements">
           <img src={book.thumbnail} alt="Book cover"></img>
         </li>
         <li>Author: {book.author}</li>

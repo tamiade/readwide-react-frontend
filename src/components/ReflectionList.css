@@ -1,0 +1,6 @@
+.reflections-container {
+  font-size: calc(10px + 2vmin);
+  padding: 50px;
+  border-style: inset;
+  margin-top: 50px;
+}

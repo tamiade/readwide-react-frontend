@@ -1,0 +1,7 @@
+.reflection-display {
+    list-style: none;
+    border-bottom-style: solid;
+    border-color: lightgray;
+    padding: 20px;
+    font-size: 0.7em;
+}
