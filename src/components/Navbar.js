@@ -28,7 +28,7 @@ const NavBar = ({ toggleRegisterBook, onFilter, filterValue, isRegistering }) =>
             navbarScroll
           >
             <Nav.Link onClick={onRegisterBookClick} className="h5 my-auto">
-              {isRegistering ? "Dashboard" : "Register Book"}
+              {isRegistering ? "Bookshelf" : "Register Book"}
             </Nav.Link>            
           </Nav>
           <Form className="d-flex">
@@ -36,7 +36,7 @@ const NavBar = ({ toggleRegisterBook, onFilter, filterValue, isRegistering }) =>
               <Form.Control
                 type="search"
                 value={filterValue}
-                placeholder="Search books 🔍"
+                placeholder="🔍 Search books"
                 onChange={renameSearch}
                 className="me-2"
                 aria-label="Search"
