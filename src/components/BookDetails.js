@@ -63,7 +63,7 @@ const BookDetails = ({ book, reflections, onBookChange, onBackClick }) => {
   };
 
   return (
-    <section>
+    <section className="book-view">
       <ul className="book-display">
         <li className="book-elements">
           <Button variant="outline-dark" onClick={onBackButtonClick}>

@@ -6,7 +6,9 @@ const Reflection = ({ reflection }) => {
     <section>
       <ul className="reflection-display">
         <li>{reflection.postedTime.toString()}</li>
-        <li>Submitted By {reflection.submittedBy}</li>
+        <li>
+          <strong>Submitted By {reflection.submittedBy}</strong>
+        </li>
         <li>{reflection.reflection}</li>
       </ul>
     </section>
