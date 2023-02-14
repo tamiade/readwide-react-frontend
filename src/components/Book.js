@@ -1,16 +1,16 @@
-const Book = ({ thumbnail, title, author, description, onBookClick }) => {
+import './Book.css';
+
+const Book = ({ book, onBookClick }) => {
 
   const onBookImageClick = () => {
-   
+    onBookClick(book);
   };
 
   return (
     <section>
-      <ul>
-        <li><a onBookClick={onBookImageClick}><img src={thumbnail} alt="Book cover"></img></a></li>
-        <li>{title}</li>
-        <li>{author}</li>
-        <li>{description}</li>
+      <ul className="book-display">
+        <li><a onClick={onBookImageClick}><img src={book.thumbnail} alt="Book cover"></img></a></li>
+        <li>{book.title}</li>
       </ul>
     </section>
   );

@@ -6,14 +6,18 @@ import Navbar from "react-bootstrap/Navbar";
 import { useState } from 'react';
 import { LinkContainer } from "react-router-bootstrap";
 
-function NavBar() {
+const NavBar = ({toggleRegisterBook}) => {
 
   const [searchTerm, setSearchTerm] = useState("");
 
   const renameSearch = (changeEvent) => {
     setSearchTerm(changeEvent.target.value);
   };
-
+  const onRegisterBookClick = () => 
+  {
+    toggleRegisterBook();
+  }
+  
   return (
     <Navbar fixed="top" bg="light" expand="lg">
       <Container>
@@ -27,9 +31,9 @@ function NavBar() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <LinkContainer to="/registerbook">
-              <Nav.Link className="h5 my-auto">Register Book</Nav.Link>
-            </LinkContainer>
+            <Nav.Link onClick={onRegisterBookClick} className="h5 my-auto">
+              Register Book
+            </Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control

@@ -1,12 +1,11 @@
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
 import { useState } from "react";
 import axios from "axios";
 
-function RegisterBookForm() {
-
+const RegisterBookForm = ({onBookRegistered}) => {
   const [formFields, setFormFields] = useState({
     title: "",
     author: "",
@@ -25,56 +24,48 @@ function RegisterBookForm() {
       author: event.target.value,
     });
   };
+  
   const registerBook = (book) => {
-      axios
-        .post("https://readwide-spring-api.herokuapp.com/books",  book)
-        .then((response) => {
-          console.log("Book created!");
-        })
-        .catch((error) => {
-          console.log("Error:", error);
-          alert("Couldn't create a new book.");
-        });
-  }
+    axios
+      .post("https://readwide-spring-api.herokuapp.com/books", book)
+      .then((response) => {
+        console.log("Book created!");
+        onBookRegistered();
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+        alert("Couldn't create a new book.");
+      });
+  };
   const onFormSubmit = (event) => {
-        event.preventDefault();
+    event.preventDefault();
 
-        let receivedData = callGoogleBooksApi();
-
-        setFormFields({
-            name: '',
-            email: '',
-        });
-    };
-
+    callGoogleBooksApi();
+  };
 
   const callGoogleBooksApi = () => {
     console.log("Form data:", formFields);
-    axios.get(
-        "https://www.googleapis.com/books/v1/volumes",
-        {
-          params: {
-            q: formFields.title,
-            format: "json",
-          },
-        })
-        .then((response) => {
-          console.log("Form submitted successfully:", response.data);
-          const receivedData = {
-            thumbnail:
-              response.data.items[0].volumeInfo.imageLinks.smallThumbnail,
-            title: response.data.items[0].volumeInfo.title,
-            author: response.data.items[0].volumeInfo.authors[0],
-            description:
-              response.data.items[0].description === undefined
-                ? ""
-                : response.data.items[0].description,
-          };
-          registerBook(receivedData)
+    axios
+      .get("https://www.googleapis.com/books/v1/volumes", {
+        params: {
+          q: formFields.title,
+          format: "json",
+        },
+      })
+      .then((response) => {
+        console.log("Form submitted successfully:", response.data);
+        const receivedData = {
+          thumbnail:
+            response.data.items[0].volumeInfo.imageLinks.smallThumbnail,
+          title: response.data.items[0].volumeInfo.title,
+          author: response.data.items[0].volumeInfo.authors[0],
+          description: response.data.items[0].volumeInfo.description
+        };
+        registerBook(receivedData);
       })
       .catch((error) => {
         console.log("Error submitting form:", error.response.data.message);
-    })
+      });
   };
 
   return (
@@ -118,6 +109,6 @@ function RegisterBookForm() {
       </Form.Group>
     </Form>
   );
-}
+};
 
 export default RegisterBookForm;

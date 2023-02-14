@@ -18,9 +18,7 @@ const ReflectionList = ({ reflections }) => {
     return (
       <li>
         <Reflection
-          submittedBy={reflection.submittedBy}
-          timePosted={reflection.timePosted}
-          reflectionEntry={reflection.reflectionEntry}
+          reflection={reflection}
         />
       </li>
     );

@@ -1,10 +1,10 @@
-const Reflection = ({submittedBy, timePosted, reflectionEntry}) => {
+const Reflection = ({reflection}) => {
   return (
     <section>
       <ul>
-        <li>{submittedBy}</li>
-        <li>{timePosted}</li>
-        <li>{reflectionEntry}</li>
+        <li>{reflection.postedTime.toString()}</li>
+        <li>Submitted By {reflection.submittedBy}</li>
+        <li>{reflection.reflection}</li>
       </ul>
     </section>
   );
