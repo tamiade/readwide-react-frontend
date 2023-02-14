@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { LinkContainer } from "react-router-bootstrap";
 
-const NavBar = ({ toggleRegisterBook, onFilter, filterValue }) => {
+const NavBar = ({ toggleRegisterBook, onFilter, filterValue, isRegistering }) => {
   
   const renameSearch = (changeEvent) => {
     onFilter(changeEvent.target.value);
@@ -28,18 +28,20 @@ const NavBar = ({ toggleRegisterBook, onFilter, filterValue }) => {
             navbarScroll
           >
             <Nav.Link onClick={onRegisterBookClick} className="h5 my-auto">
-              Register Book
-            </Nav.Link>
+              {isRegistering ? "Dashboard" : "Register Book"}
+            </Nav.Link>            
           </Nav>
           <Form className="d-flex">
-            <Form.Control
-              type="search"
-              value={filterValue}
-              placeholder="Search books 🔍"
-              onChange={renameSearch}
-              className="me-2"
-              aria-label="Search"
-            />
+            {isRegistering ? null : (
+              <Form.Control
+                type="search"
+                value={filterValue}
+                placeholder="Search books 🔍"
+                onChange={renameSearch}
+                className="me-2"
+                aria-label="Search"
+              />
+            )}
           </Form>
         </Navbar.Collapse>
       </Container>

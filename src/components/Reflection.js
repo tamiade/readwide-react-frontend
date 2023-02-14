@@ -5,7 +5,7 @@ const Reflection = ({ reflection }) => {
   return (
     <section>
       <ul className="reflection-display">
-        <li>{reflection.postedTime.toString()}</li>
+        <li>{new Date(reflection.postedTime).toLocaleString()}</li>
         <li>
           <strong>Submitted By {reflection.submittedBy}</strong>
         </li>

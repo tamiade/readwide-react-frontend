@@ -38,8 +38,7 @@ function App() {
   };
   
   const displayBookDetails = (book) => {
-    setSelectedBook(book);
-    setReflections(book.reflection);
+    changeSelectedBook(book);
     setShowBookDetailView(true);
   };
   
@@ -75,6 +74,7 @@ function App() {
         toggleRegisterBook={toggleRegisterBook}
         onFilter={onFilterBooks}
         filterValue={filterValue}
+        isRegistering={showRegisterBook}
       />
       <Routes>
         <Route exact path="/" component={App} />
