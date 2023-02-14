@@ -75,7 +75,7 @@ const BookDetails = ({ book, reflections, onBookChange, onBackClick }) => {
           <img src={book.thumbnail} alt="Book cover"></img>
         </li>
         <li>Author: {book.author}</li>
-        <li>description: {book.description}</li>
+        <li>Description: {book.description}</li>
         <li>
           <Form onSubmit={onPublishReflection}>
             <Form.Group
