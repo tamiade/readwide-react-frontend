@@ -23,6 +23,7 @@ function App() {
         showBooksWithFilter(response.data);
       });
   }, []);
+  
   const refreshBookList = () => {
     axios
       .get("https://readwide-spring-api.herokuapp.com/books")
@@ -31,14 +32,17 @@ function App() {
         toggleRegisterBook();
       });
   };
+  
   const toggleRegisterBook = () => {
     setShowRegisterBook(!showRegisterBook);
   };
+  
   const displayBookDetails = (book) => {
     setSelectedBook(book);
     setReflections(book.reflection);
     setShowBookDetailView(true);
   };
+  
   const hideDisplayDetails = () => {
     setShowBookDetailView(false);
   };
@@ -47,6 +51,7 @@ function App() {
     setSelectedBook(book);
     setReflections(book.reflection);
   };
+  
   const showBooksWithFilter = (books, filter) => {
     for (let key in books) {
       let book = books[key];
@@ -58,10 +63,12 @@ function App() {
     }
     setBookData(books);
   };
+  
   const onFilterBooks = (filterVal) => {
     setFilterValue(filterVal);
     showBooksWithFilter(bookData, filterVal);
   };
+  
   return (
     <body className="App">
       <Navbar

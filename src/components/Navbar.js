@@ -5,9 +5,11 @@ import Navbar from "react-bootstrap/Navbar";
 import { LinkContainer } from "react-router-bootstrap";
 
 const NavBar = ({ toggleRegisterBook, onFilter, filterValue }) => {
+  
   const renameSearch = (changeEvent) => {
     onFilter(changeEvent.target.value);
   };
+  
   const onRegisterBookClick = (event) => {
     toggleRegisterBook();
   };

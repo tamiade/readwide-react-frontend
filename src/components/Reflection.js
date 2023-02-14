@@ -1,6 +1,7 @@
 import "./Reflection.css";
 
 const Reflection = ({ reflection }) => {
+  
   return (
     <section>
       <ul className="reflection-display">

@@ -8,6 +8,7 @@ import axios from "axios";
 import "./BookDetails.css";
 
 const BookDetails = ({ book, reflections, onBookChange, onBackClick }) => {
+  
   const [formFields, setFormFields] = useState({
     user: "",
     reflection: "",
@@ -16,6 +17,7 @@ const BookDetails = ({ book, reflections, onBookChange, onBackClick }) => {
   const onBackButtonClick = (event) => {
     onBackClick();
   };
+
   const loadReflections = (bookId) => {
     axios
       .get(
@@ -27,6 +29,7 @@ const BookDetails = ({ book, reflections, onBookChange, onBackClick }) => {
         onBookChange(newBook);
       });
   };
+
   const onPublishReflection = (event) => {
     event.preventDefault();
     console.log("Post reflection");

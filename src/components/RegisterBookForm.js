@@ -5,11 +5,14 @@ import Row from "react-bootstrap/Row";
 import { useState } from "react";
 import axios from "axios";
 import BookList from "./BookList";
+
 const RegisterBookForm = ({ onBookRegistered }) => {
+  
   const [formFields, setFormFields] = useState({
     title: "",
     author: "",
   });
+  
   const [googleBookData, setGoogleBookData] = useState([]);
 
   const onTitleChange = (event) => {
@@ -31,11 +34,13 @@ const RegisterBookForm = ({ onBookRegistered }) => {
         alert("Couldn't create a new book.");
       });
   };
+  
   const onFormSubmit = (event) => {
     event.preventDefault();
 
     callGoogleBooksApi();
   };
+  
   const transformGoogleBookToClientBook = (googleBookData) => {
     let clientBooks = [];
     for (let googleBook of googleBookData) {
@@ -61,6 +66,7 @@ const RegisterBookForm = ({ onBookRegistered }) => {
     }
     return clientBooks;
   };
+  
   const callGoogleBooksApi = () => {
     console.log("Form data:", formFields);
     axios
