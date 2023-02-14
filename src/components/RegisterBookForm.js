@@ -4,8 +4,8 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { useState } from "react";
 import axios from "axios";
-import BookList from './components/BookList';
-const RegisterBookForm = ({onBookRegistered}) => {
+import BookList from "./BookList";
+const RegisterBookForm = ({ onBookRegistered }) => {
   const [formFields, setFormFields] = useState({
     title: "",
     author: "",
@@ -38,14 +38,17 @@ const RegisterBookForm = ({onBookRegistered}) => {
   };
   const transformGoogleBookToClientBook = (googleBookData) => {
     let clientBooks = [];
-    for (let googleBook of googleBookData)
-    {
+    for (let googleBook of googleBookData) {
       let bookThumbnail = googleBook.volumeInfo.hasOwnProperty("imageLinks")
         ? googleBook.volumeInfo.imageLinks.thumbnail
         : "/resources/bookImage.jpeg";
-      let bookDescription = googleBook.volumeInfo.hasOwnProperty("description") ? googleBook.volumeInfo.description.substring(0, 250) : "";
-      if (googleBook.volumeInfo.hasOwnProperty("description") && googleBook.volumeInfo.description.length > 250)
-      {
+      let bookDescription = googleBook.volumeInfo.hasOwnProperty("description")
+        ? googleBook.volumeInfo.description.substring(0, 250)
+        : "";
+      if (
+        googleBook.volumeInfo.hasOwnProperty("description") &&
+        googleBook.volumeInfo.description.length > 250
+      ) {
         bookDescription += "...";
       }
       let clientBook = {
@@ -69,12 +72,13 @@ const RegisterBookForm = ({onBookRegistered}) => {
       })
       .then((response) => {
         console.log("Form submitted successfully:", response.data);
-        if (response.data.items.length === 0) 
-        {
+        if (response.data.items.length === 0) {
           alert("No books found!");
           return;
         }
-        let clientBookData = transformGoogleBookToClientBook(response.data.items)
+        let clientBookData = transformGoogleBookToClientBook(
+          response.data.items
+        );
         setGoogleBookData(clientBookData);
       })
       .catch((error) => {
@@ -91,7 +95,7 @@ const RegisterBookForm = ({onBookRegistered}) => {
           controlId="formHorizontalTitle"
         >
           <Form.Label column sm={1}>
-            Title
+            Keywords
           </Form.Label>
           <Col sm={10}>
             <Form.Control
@@ -110,7 +114,11 @@ const RegisterBookForm = ({onBookRegistered}) => {
           </Col>
         </Form.Group>
       </Form>
-      <BookList books={googleBookData} bookListLabel="Retrieved books" onBookClick={registerBook} />
+      <BookList
+        books={googleBookData}
+        bookListLabel="Retrieved books"
+        onBookClick={registerBook}
+      />
     </div>
   );
 };

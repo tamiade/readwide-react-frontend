@@ -1,9 +1,7 @@
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { useState } from 'react';
 import { LinkContainer } from "react-router-bootstrap";
 
 const NavBar = ({ toggleRegisterBook, onFilter, filterValue }) => {
@@ -35,7 +33,7 @@ const NavBar = ({ toggleRegisterBook, onFilter, filterValue }) => {
             <Form.Control
               type="search"
               value={filterValue}
-              placeholder="Search by Title"
+              placeholder="Search books 🔍"
               onChange={renameSearch}
               className="me-2"
               aria-label="Search"
