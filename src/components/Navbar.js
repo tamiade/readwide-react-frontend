@@ -6,18 +6,14 @@ import Navbar from "react-bootstrap/Navbar";
 import { useState } from 'react';
 import { LinkContainer } from "react-router-bootstrap";
 
-const NavBar = ({toggleRegisterBook}) => {
-
-  const [searchTerm, setSearchTerm] = useState("");
-
+const NavBar = ({ toggleRegisterBook, onFilter, filterValue }) => {
   const renameSearch = (changeEvent) => {
-    setSearchTerm(changeEvent.target.value);
+    onFilter(changeEvent.target.value);
   };
-  const onRegisterBookClick = () => 
-  {
+  const onRegisterBookClick = (event) => {
     toggleRegisterBook();
-  }
-  
+  };
+
   return (
     <Navbar fixed="top" bg="light" expand="lg">
       <Container>
@@ -38,18 +34,17 @@ const NavBar = ({toggleRegisterBook}) => {
           <Form className="d-flex">
             <Form.Control
               type="search"
-              value={searchTerm}
-              placeholder="Search by Title or Author"
+              value={filterValue}
+              placeholder="Search by Title"
               onChange={renameSearch}
               className="me-2"
               aria-label="Search"
             />
-            <Button variant="outline-dark">Find Books</Button>
           </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
-}
+};
 
 export default NavBar;

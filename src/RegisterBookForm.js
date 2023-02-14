@@ -4,12 +4,13 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { useState } from "react";
 import axios from "axios";
-
+import BookList from './components/BookList';
 const RegisterBookForm = ({onBookRegistered}) => {
   const [formFields, setFormFields] = useState({
     title: "",
     author: "",
   });
+  const [googleBookData, setGoogleBookData] = useState([]);
 
   const onTitleChange = (event) => {
     setFormFields({
@@ -18,13 +19,6 @@ const RegisterBookForm = ({onBookRegistered}) => {
     });
   };
 
-  const onAuthorChange = (event) => {
-    setFormFields({
-      ...formFields,
-      author: event.target.value,
-    });
-  };
-  
   const registerBook = (book) => {
     axios
       .post("https://readwide-spring-api.herokuapp.com/books", book)
@@ -42,7 +36,28 @@ const RegisterBookForm = ({onBookRegistered}) => {
 
     callGoogleBooksApi();
   };
-
+  const transformGoogleBookToClientBook = (googleBookData) => {
+    let clientBooks = [];
+    for (let googleBook of googleBookData)
+    {
+      let bookThumbnail = googleBook.volumeInfo.hasOwnProperty("imageLinks")
+        ? googleBook.volumeInfo.imageLinks.thumbnail
+        : "/resources/bookImage.jpeg";
+      let bookDescription = googleBook.volumeInfo.hasOwnProperty("description") ? googleBook.volumeInfo.description.substring(0, 250) : "";
+      if (googleBook.volumeInfo.hasOwnProperty("description") && googleBook.volumeInfo.description.length > 250)
+      {
+        bookDescription += "...";
+      }
+      let clientBook = {
+        thumbnail: bookThumbnail,
+        title: googleBook.volumeInfo.title,
+        author: googleBook.volumeInfo.authors[0],
+        description: bookDescription,
+      };
+      clientBooks.push(clientBook);
+    }
+    return clientBooks;
+  };
   const callGoogleBooksApi = () => {
     console.log("Form data:", formFields);
     axios
@@ -54,14 +69,13 @@ const RegisterBookForm = ({onBookRegistered}) => {
       })
       .then((response) => {
         console.log("Form submitted successfully:", response.data);
-        const receivedData = {
-          thumbnail:
-            response.data.items[0].volumeInfo.imageLinks.smallThumbnail,
-          title: response.data.items[0].volumeInfo.title,
-          author: response.data.items[0].volumeInfo.authors[0],
-          description: response.data.items[0].volumeInfo.description
-        };
-        registerBook(receivedData);
+        if (response.data.items.length === 0) 
+        {
+          alert("No books found!");
+          return;
+        }
+        let clientBookData = transformGoogleBookToClientBook(response.data.items)
+        setGoogleBookData(clientBookData);
       })
       .catch((error) => {
         console.log("Error submitting form:", error.response.data.message);
@@ -69,45 +83,35 @@ const RegisterBookForm = ({onBookRegistered}) => {
   };
 
   return (
-    <Form onSubmit={onFormSubmit}>
-      <Form.Group
-        as={Row}
-        className="mb-3 py-5 mt-5"
-        controlId="formHorizontalTitle"
-      >
-        <Form.Label column sm={1}>
-          Title
-        </Form.Label>
-        <Col sm={10}>
-          <Form.Control
-            value={formFields.title}
-            onChange={onTitleChange}
-            placeholder="Enter book title"
-          />
-        </Col>
-      </Form.Group>
+    <div>
+      <Form onSubmit={onFormSubmit}>
+        <Form.Group
+          as={Row}
+          className="mb-3 py-5 mt-5"
+          controlId="formHorizontalTitle"
+        >
+          <Form.Label column sm={1}>
+            Title
+          </Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              value={formFields.title}
+              onChange={onTitleChange}
+              placeholder="Enter book search terms"
+            />
+          </Col>
+        </Form.Group>
 
-      <Form.Group as={Row} className="mb-3" controlId="formHorizontalAuthor">
-        <Form.Label column sm={1}>
-          Author
-        </Form.Label>
-        <Col sm={10}>
-          <Form.Control
-            value={formFields.author}
-            onChange={onAuthorChange}
-            placeholder="Enter book author"
-          />
-        </Col>
-      </Form.Group>
-
-      <Form.Group as={Row} className="mb-3">
-        <Col sm={{ span: 20, offset: -10 }}>
-          <Button variant="outline-dark" type="submit">
-            Add Book
-          </Button>
-        </Col>
-      </Form.Group>
-    </Form>
+        <Form.Group as={Row} className="mb-3">
+          <Col sm={{ span: 20, offset: -10 }}>
+            <Button variant="outline-dark" type="submit">
+              Search
+            </Button>
+          </Col>
+        </Form.Group>
+      </Form>
+      <BookList books={googleBookData} bookListLabel="Retrieved books" onBookClick={registerBook} />
+    </div>
   );
 };
 

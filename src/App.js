@@ -14,12 +14,14 @@ function App() {
   const [showRegisterBook, setShowRegisterBook] = useState(false);
   const [showBookDetailView, setShowBookDetailView] = useState(false); 
   const [selectedBook, setSelectedBook] = useState({}); 
+  const [reflections, setReflections] = useState([]); 
+  const [filterValue, setFilterValue] = useState("")
 
   useEffect(() => {
     axios
       .get("https://readwide-spring-api.herokuapp.com/books")
       .then((response) => {
-        setBookData(response.data);
+         showBooksWithFilter(response.data);
       });
   }, []);
   const refreshBookList = () => 
@@ -28,14 +30,15 @@ function App() {
       .get("https://readwide-spring-api.herokuapp.com/books")
       .then((response) => {
         setBookData(response.data);
+        toggleRegisterBook();
       });
   };
   const toggleRegisterBook = () => {
-    let newShowRegisterBook = !showRegisterBook;
-    setShowRegisterBook(newShowRegisterBook);
+    setShowRegisterBook(!showRegisterBook);
   }
   const displayBookDetails = (book) => {
       setSelectedBook(book);
+      setReflections(book.reflection);
       setShowBookDetailView(true);
   }
   const hideDisplayDetails = () => {
@@ -44,11 +47,30 @@ function App() {
   
   const changeSelectedBook = (book) => {
       setSelectedBook(book);
+      setReflections(book.reflection);
   }
-
+  const showBooksWithFilter = (books, filter) => {
+    for (let key in books)
+    {
+      let book = books[key];
+      if (filter === undefined || filter === "")
+      {
+        book.visible = true;
+      }
+      else
+      {
+        book.visible = book.title.includes(filter);
+      }
+    }
+    setBookData(books);
+  }
+  const onFilterBooks = (filterVal) => {
+    setFilterValue(filterVal);
+    showBooksWithFilter(bookData, filterVal);
+  }
   return (
     <body className="App">
-      <Navbar toggleRegisterBook={toggleRegisterBook} />
+      <Navbar toggleRegisterBook={toggleRegisterBook} onFilter={onFilterBooks} filterValue={filterValue}/>
       <Routes>
         <Route exact path="/" component={App} />
         {/* <Route path="/search" component={FindBooksForm} /> */}
@@ -64,18 +86,23 @@ function App() {
         </p>
       </header>
       <main>
-        {showBookDetailView ? (
+        {!showRegisterBook && showBookDetailView ? (
           <BookDetails
             book={selectedBook}
+            reflections={reflections}
             onBookChange={changeSelectedBook}
             onBackClick={hideDisplayDetails}
           ></BookDetails>
         ) : null}
-        {showRegisterBook && !showBookDetailView ? (
+        {showRegisterBook ? (
           <RegisterBookForm onBookRegistered={refreshBookList} />
         ) : null}
-        {showBookDetailView ? null : (
-          <BookList books={bookData} onBookClick={displayBookDetails} />
+        {showRegisterBook || showBookDetailView ? null : (
+          <BookList
+            books={bookData}
+            bookListLabel="Registered Books"
+            onBookClick={displayBookDetails}
+          />
         )}
       </main>
     </body>

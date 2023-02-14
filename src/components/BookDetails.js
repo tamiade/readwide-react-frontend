@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import { useState } from "react";
 import axios from "axios";
 
-const BookDetails = ({ book, onBookChange, onBackClick }) => {
+const BookDetails = ({ book, reflections, onBookChange, onBackClick }) => {
   const [formFields, setFormFields] = useState({
     user: "",
     reflection: "",
@@ -117,7 +117,7 @@ const BookDetails = ({ book, onBookChange, onBackClick }) => {
           </Form>
         </li>
         <li>
-          <ReflectionList reflections={book.reflection}></ReflectionList>
+          <ReflectionList reflections={reflections}></ReflectionList>
         </li>
       </ul>
     </section>
