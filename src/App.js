@@ -57,7 +57,7 @@ function App() {
       if (filter === undefined || filter === "") {
         book.visible = true;
       } else {
-        book.visible = book.title.includes(filter);
+        book.visible = book.title.toLowerCase().includes(filter.toLowerCase());
       }
     }
     setBookData(books);
