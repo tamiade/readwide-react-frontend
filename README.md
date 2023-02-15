@@ -7,10 +7,11 @@
 </p>
 
 > ReadWide is a web application that provides inclusive, social reading recommendations. Users can spotlight books authored by members of marginalized communities.
+<img alt="Screenshot" src="../resources/projectScreenshot.png">
 
 ### 🏠 [Homepage](https://readwide-react-frontend.herokuapp.com/)
 
-### ✨ [Demo](https://readwide-react-frontend.herokuapp.com/)
+### ✨ [Demo](https://youtu.be/GL0RUJiDDYI)
 
 ## Dependencies
 
