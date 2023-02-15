@@ -12,6 +12,10 @@
 
 ### ✨ [Demo](https://readwide-react-frontend.herokuapp.com/)
 
+## Dependencies
+
+- Google Books API
+
 ## Install
 
 ```sh
