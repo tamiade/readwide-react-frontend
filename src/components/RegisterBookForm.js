@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import { useState } from "react";
 import axios from "axios";
 import BookList from "./BookList";
+import BookImage from "../resources/defaultImage.png"
 
 const RegisterBookForm = ({ onBookRegistered }) => {
   
@@ -46,7 +47,7 @@ const RegisterBookForm = ({ onBookRegistered }) => {
     for (let googleBook of googleBookData) {
       let bookThumbnail = googleBook.volumeInfo.hasOwnProperty("imageLinks")
         ? googleBook.volumeInfo.imageLinks.thumbnail
-        : "/resources/bookImage.jpeg";
+        : BookImage;
       let bookDescription = googleBook.volumeInfo.hasOwnProperty("description")
         ? googleBook.volumeInfo.description.substring(0, 250)
         : "";
