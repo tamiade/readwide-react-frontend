@@ -90,7 +90,7 @@ const BookDetails = ({ book, reflections, onBookChange, onBackClick }) => {
                 <Form.Control
                   value={formFields.user}
                   onChange={onUserChange}
-                  placeholder="Enter user"
+                  placeholder="Enter your name"
                 />
               </Col>
             </Form.Group>
