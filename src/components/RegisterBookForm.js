@@ -28,6 +28,7 @@ const RegisterBookForm = ({ onBookRegistered }) => {
       .post("https://readwide-spring-api.herokuapp.com/books", book)
       .then((response) => {
         console.log("Book created!");
+        alert("Added Book!")
         onBookRegistered();
       })
       .catch((error) => {
