@@ -1,4 +1,12 @@
 .book-display {
     list-style: none;
+}
+
+.title-display {
     font-size: 20px;
+    font-weight: bold;
+}
+
+.author-display {
+    font-size: 15px;
 }

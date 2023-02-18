@@ -9,8 +9,13 @@ const Book = ({ book, onBookClick }) => {
   return (
     <section>
       <ul className="book-display">
-        <li><a onClick={onBookImageClick}><img src={book.thumbnail} alt="Book cover"></img></a></li>
-        <li>{book.title}</li>
+        <li>
+          <a onClick={onBookImageClick}>
+            <img src={book.thumbnail} alt="Book cover"></img>
+          </a>
+        </li>
+        <li className="title-display">{book.title}</li>
+        <li className="author-display">by {book.author}</li>
       </ul>
     </section>
   );
